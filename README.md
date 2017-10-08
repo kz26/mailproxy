@@ -8,7 +8,8 @@ mailproxy is a simple SMTP proxy. It receives emails through an unencrypted, una
 
 # Usage
 1. Create a config file (see below).
-2. Run mailproxy from the command line, e.g. `python mailproxy.py`
+2. Run mailproxy from the command line, e.g. `python mailproxy.py`.
+
 By default, mailproxy looks for a `config.ini` in its own directory.
 If you have placed your config file elsewhere, you can run mailproxy
 using `python mailproxy.py <config_file_path>`.
