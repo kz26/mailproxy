@@ -8,7 +8,7 @@ import sys
 from aiosmtpd.controller import Controller
 
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 class MailProxyHandler:
     def __init__(self, host, port=0, auth=None, use_ssl=False, starttls=False):
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         config_path = sys.argv[1]
     else:
         config_path = os.path.join(
-            os.getcwd(),
+            sys.path[0],
             'config.ini'
         )
     if not os.path.exists(config_path):
