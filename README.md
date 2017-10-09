@@ -16,7 +16,7 @@ using `python mailproxy.py <config_file_path>`.
 
 
 # Configuration
-An example config file appears below:
+An example config file for a mailproxy instance that accepts emails locally on port 25 for delivery via Gmail appears below:
 ```
 [local]
 host = 127.0.0.1
