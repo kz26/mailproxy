@@ -4,11 +4,12 @@ import logging
 import os
 import smtplib
 import sys
+from time import sleep
 
 from aiosmtpd.controller import Controller
 
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 class MailProxyHandler:
     def __init__(self, host, port=0, auth=None, use_ssl=False, starttls=False):
@@ -100,4 +101,4 @@ if __name__ == '__main__':
     )
     controller.start()
     while controller.loop.is_running():
-        pass
+        sleep(0.2)
