@@ -39,9 +39,9 @@ class MailProxyHandler:
         refused = {}
         try:
             if self._use_ssl:
-                s = smtplib.SMTP_SSL()
+                s = smtplib.SMTP_SSL(self._host)
             else:
-                s = smtplib.SMTP()
+                s = smtplib.SMTP(self._host)
             s.connect(self._host, self._port)
             if self._starttls:
                 s.starttls()
@@ -59,7 +59,7 @@ class MailProxyHandler:
         except (OSError, smtplib.SMTPException) as e:
             logging.exception('got %s', e.__class__)
             # All recipients were refused. If the exception had an associated
-            # error code, use it.  Otherwise, fake it with a SMTP 554 status code. 
+            # error code, use it.  Otherwise, fake it with a SMTP 554 status code.
             errcode = getattr(e, 'smtp_code', 554)
             errmsg = getattr(e, 'smtp_error', e.__class__)
             raise smtplib.SMTPResponseException(errcode, errmsg.decode())
@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
     config = configparser.ConfigParser()
     config.read(config_path)
-    
+
     use_auth = config.getboolean('remote', 'smtp_auth', fallback=False)
     if use_auth:
         auth = {
@@ -87,7 +87,7 @@ if __name__ == '__main__':
         }
     else:
         auth = None
-    
+
     controller = Controller(
         MailProxyHandler(
             host=config.get('remote', 'host'),
